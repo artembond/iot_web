@@ -124,7 +124,7 @@ func Init() {
 	http.HandleFunc("/view/", viewHandler)
 	http.HandleFunc("/edit/", editHandler)
 	http.HandleFunc("/save/", saveHandler)
-	http.HandleFunc("/index.html", indexHandler)
+	http.HandleFunc("/", indexHandler)
 
 	http.Handle("/ws_test", websocket.Handler(EchoServer))
 

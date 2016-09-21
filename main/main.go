@@ -1,8 +1,8 @@
 package main
 
 import (
-	"artem_test_net_http/iot"
-	"artem_test_net_http/web"
+	"github.com/artembond/iot_web/iot"
+	"github.com/artembond/iot_web/web"
 )
 
 func main() {
