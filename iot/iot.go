@@ -6,4 +6,5 @@ import (
 
 func Init() {
 	fmt.Println("IoT Start.")
+	test()
 }
