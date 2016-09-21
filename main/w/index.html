@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>TEST </title>
+    <meta charset="utf-8">
+    <meta name="description" content="The HTML5 Herald">
+	<script src = "http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src = "http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+  </head>
+  <body bgcolor=white>
+
+    <table border="1" cellpadding="10">
+      <tr>
+		<td>
+          <h1>Sample "Hello2, World2" Applicatio {{.Title}} n</h1>
+        </td>
+      </tr>
+      <tr>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+      </tr>
+    </table>
+
+    <p>This is the home page for the HelloWorld Web application. </p>
+	<p> {{.Test3}} </p>
+	<p><textarea name="Text1" cols="80" rows="40" id="textLog">textarea</textarea> </p>
+	<p>
+		<button type="button" onclick="clickHandler()">button WS</button>
+		<script>
+			var cnt=0;
+		    function clickHandler() {
+		      	console.log('send 0 from button');
+			//socket.send(); 
+			doSend('From button: Heres some text that the server is urgently awaiting!'+cnt);
+			cnt++;
+			websocket.send('button WS');
+			console.log('send 1 from button');
+		    }
+		</script>
+ 	</p>
+	
+    <p>To prove that they work, you can execute either of the following links:
+
+    <ul>
+      <li>To a <a href="edit">edit</a>.
+      <li>To a <a href="view">view</a>.
+    <li> {{.Test2}} </a>
+    </ul>
+	
+	
+	<script>
+
+  // Create a socket
+  //console.log("teset")
+    console.log(5 + 6);
+  var websocket = new WebSocket('ws://'+window.location.host+'/ws_test');
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+
+  function onOpen(evt)
+  {
+    writeToScreen("CONNECTED");
+    doSend("WebSocket rocks");
+    console.log('onOpen');
+  }
+
+  function onClose(evt)
+  {
+    writeToScreen("DISCONNECTED");
+    console.log('onClost');
+  }
+
+  function onMessage(evt)
+  {
+    writeToScreen(evt.data);
+    //websocket.close();
+    console.log('onMessage');
+  }
+
+  function onError(evt)
+  {
+    writeToScreen(evt.data);
+    console.log('onError');
+  }
+
+  function doSend(message)
+  {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+    console.log('doSend');
+  }
+
+  function writeToScreen(message)
+  {
+    $('#textLog').append(message+'\n');
+    //$('#thread').scrollTo('max')
+    console.log('append');
+  }
+
+</script>
+
+
+  </body>
+</html>
